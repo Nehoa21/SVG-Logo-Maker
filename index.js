@@ -1,7 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateLogo = require('./lib/generateLogo.js');
-const { Circle, Square } = require('./lib/shapes.js');
+const { Circle, Square, Triangle } = require('./lib/shapes.js');
 
 // questions array
 const questions = 
@@ -42,36 +41,41 @@ const questions =
     },
   ];
 
+// function to generate logo from user input
+function generateLogo() {
+  let shapeChoice;
+  // if / else to determine user shape choice
+  if (questions.shape === 'Circle') {
+    shapeChoice = new Circle();
+    svgFileString += `<circle cx="150" cy="100" r="80" fill=${questions.shape-color}}/>`;
+  } else if(questions.shape === 'Triangle') {
+    shapeChoice = new Triangle();
+    svgFileString += `<polygon points="200,10 300,200 110,200" fill=${questions.shape-color}/>`
+  } else if(questions.shape === 'Square') {
+    shapeChoice = new Square();
+    svgFileString += `<rect x="200" y="200" fill=${questions.shape-color}/>`
+  }
 
-let shapeChoice;
-if (questions.shape === 'Circle') {
-  shapeChoice = new Circle();
-} else if(questions.shape === 'Triangle') {
-  shapeChoice = new Triangle();
-} else if(questions.shape === 'Square') {
-  shapeChoice = new Square();
+  // creating SVG file CSS 
+  let svgFileString = '<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">';
+  
+  svgFileString += `${shapeChoice}`;
+  svgFileString += `<text x="150" y="125" font-size="60" text-anchor="middle" fill=${questions.text-color}>${questions.name}</text>`
+  svgFileString += `</svg>`;
 }
 
-let svgLogoText = '<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">';
-svgLogoText += `${questions.shape}`;
-svgLogoText += shapeChoice;
-
-
 // write file
-  function writeToFile(fileName, data) {  
-  fs.writeFile(fileName, data, (err) => {
-    if(err) {
-      console.log(err)
-    }
-    console.log('Generated logo.svg')
+function writeToFile(fileName, svgFileString) {  
+  fs.writeFile(fileName, svgFileString, (err) => {
+    err ? console.log(err) : console.log('Generated logo.svg');
   });
 }
 
 // initialize function
 function init() {
   inquirer.prompt(questions)
-    .then(function(data){
-      writeToFile('GeneratedLogo.svg', generateLogo(data))
+    .then(function(answers){
+      writeToFile('GeneratedLogo.svg', generateLogo(answers))
     });
 }
 
