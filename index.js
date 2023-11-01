@@ -16,7 +16,7 @@ const questions =
       }
     },
     {
-      // enter olor name / hexadecimal number for text
+      // enter color name / hexadecimal number for text
       type: 'input',
       name: 'text-color',
       message: 'What color would you like for the text?',
@@ -47,20 +47,20 @@ function generateLogo() {
   // if / else to determine user shape choice
   if (questions.shape === 'Circle') {
     shapeChoice = new Circle();
-    svgFileString += `<circle cx="150" cy="100" r="80" fill=${questions.shape-color}}/>`;
+    svgFileString += `<circle cx="150" cy="100" r="80" fill="${questions.shape-color}"/>`;
   } else if(questions.shape === 'Triangle') {
     shapeChoice = new Triangle();
-    svgFileString += `<polygon points="200,10 300,200 110,200" fill=${questions.shape-color}/>`
+    svgFileString += `<polygon points="200,10 300,200 110,200" fill="${questions.shape-color}"/>`
   } else if(questions.shape === 'Square') {
     shapeChoice = new Square();
-    svgFileString += `<rect x="200" y="200" fill=${questions.shape-color}/>`
+    svgFileString += `<rect x="200" y="200" fill="${questions.shape-color}"/>`
   }
 
   // creating SVG file CSS 
   let svgFileString = '<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">';
   
   svgFileString += `${shapeChoice}`;
-  svgFileString += `<text x="150" y="125" font-size="60" text-anchor="middle" fill=${questions.text-color}>${questions.name}</text>`
+  svgFileString += `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${questions.text-color}">${questions.name}</text>`
   svgFileString += `</svg>`;
 }
 
