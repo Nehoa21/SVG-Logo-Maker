@@ -20,7 +20,7 @@ This program is run through the terminal in VS Code. This code path needs to be 
 
 After installation, in the terminal type `node index.js` to begin. Answer each prompt to generate your logo. A new file will appear to the left in the Explorer tab called `GeneratedLogo.svg`. Inside will be the code that makes the logo, and you're done! A video walkthrough is provided below for visual reference:
 
-![SVG Logo Maker]()
+![SVG Logo Maker](./assets/SVG%20Logo%20Maker.gif)
 
 ## Contributing
 
