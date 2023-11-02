@@ -55,10 +55,10 @@ function generateLogo(answers) {
     svgFileString += `<circle cx="150" cy="100" r="80" fill="${answers.shapeColor}"/>`;
   } else if(answers.shape === 'Triangle') {
     shapeChoice = new Triangle();
-    svgFileString += `<polygon points="200,10 300,200 110,200" fill="${answers.shapeColor}"/>`
+    svgFileString += `<polygon points="150,10 250,175 60,175" fill="${answers.shapeColor}"/>`
   } else if(answers.shape === 'Square') {
     shapeChoice = new Square();
-    svgFileString += `<rect x="200" y="200" fill="${answers.shapeColor}"/>`
+    svgFileString += `<rect x="75" y="30" width="150" height="150" fill="${answers.shapeColor}"/>`
   }
 
   svgFileString += `${shapeChoice}`;
