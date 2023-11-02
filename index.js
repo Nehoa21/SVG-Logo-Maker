@@ -13,12 +13,13 @@ const questions =
         if(value.length > 3) {
           return 'Logo has a maximum of 3 characters.'
         }
+        return true;
       }
     },
     {
       // enter color name / hexadecimal number for text
       type: 'input',
-      name: 'text-color',
+      name: 'textColor',
       message: 'What color would you like for the text?',
     },
     {
@@ -36,36 +37,40 @@ const questions =
     {
       // enter color name / hexadecimal number for shape
       type: 'input',
-      name: 'shape-color',
+      name: 'shapeColor',
       message: 'What color would you like for the shape?',
     },
   ];
 
 // function to generate logo from user input
-function generateLogo() {
+function generateLogo(answers) {
+    // creating SVG file CSS 
+  let svgFileString = '<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">';
+  console.log(answers)
+
   let shapeChoice;
   // if / else to determine user shape choice
-  if (questions.shape === 'Circle') {
+  if (answers.shape === 'Circle') {
     shapeChoice = new Circle();
-    svgFileString += `<circle cx="150" cy="100" r="80" fill="${questions.shape-color}"/>`;
-  } else if(questions.shape === 'Triangle') {
+    svgFileString += `<circle cx="150" cy="100" r="80" fill="${answers.shapeColor}"/>`;
+  } else if(answers.shape === 'Triangle') {
     shapeChoice = new Triangle();
-    svgFileString += `<polygon points="200,10 300,200 110,200" fill="${questions.shape-color}"/>`
-  } else if(questions.shape === 'Square') {
+    svgFileString += `<polygon points="200,10 300,200 110,200" fill="${answers.shapeColor}"/>`
+  } else if(answers.shape === 'Square') {
     shapeChoice = new Square();
-    svgFileString += `<rect x="200" y="200" fill="${questions.shape-color}"/>`
+    svgFileString += `<rect x="200" y="200" fill="${answers.shapeColor}"/>`
   }
 
-  // creating SVG file CSS 
-  let svgFileString = '<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">';
-  
   svgFileString += `${shapeChoice}`;
-  svgFileString += `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${questions.text-color}">${questions.name}</text>`
+  svgFileString += `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${answers.textColor}">${answers.name}</text>`
   svgFileString += `</svg>`;
+  
+  return svgFileString;
 }
 
 // write file
 function writeToFile(fileName, svgFileString) {  
+  console.log(svgFileString)
   fs.writeFile(fileName, svgFileString, (err) => {
     err ? console.log(err) : console.log('Generated logo.svg');
   });
