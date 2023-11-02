@@ -14,7 +14,7 @@ This SVG Logo Maker is a simple program that does just that, creates a logo with
 
 ## Installation
 
-This program is run through the terminal in VS Code. This code path needs to be cloned down to your local computer using `git clone (copied code path)` in the terminal. After opening the code in VS Code, right-click on the `index.js` file and open in `integrated terminal`. Finally, type `npm install` in the terminal to install ecessary files to run the program.
+This program is run through the terminal in VS Code. This code path needs to be cloned down to your local computer using `git clone (copied code path)` in the terminal. After opening the code in VS Code, right-click on the `index.js` file and open in `integrated terminal`. Finally, type `npm install` in the terminal to install necessary files to run the program.
 
 ## Usage
 
